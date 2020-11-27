@@ -62,7 +62,7 @@ End Sub
 Sub UpdateFromCommonFile()
 
     Dim fileC As Workbook
-    Dim rawP As String, rawF As String, rawFF As String, rawS As String
+    Dim rawP As String, rawF As String, rawS As String
     Dim tskF As String
     Dim DB As Range
     Dim cntR As Integer, cntC As Integer, i As Integer
@@ -76,16 +76,19 @@ Sub UpdateFromCommonFile()
     tskS = "인원정보" '작업시트 이름 설정 ★★
        
     '// 공통기초자료 폴더에서 업데이트 대상 파일을 찾아서 rawF에 설정
-    On Error Resume Next
     For i = 1 To 24
-        rawP = Chr(66 + i) & ":\01_IUBA 교육\02_교육행정\06_전산관리\00_무들행정\01_인원정보\" '업데이트 대상 자료의 폴더 설정 ★★
-        rawFF = Dir(rawP & "*" & rawF) '원본파일 경로포함 이름
-        If Left(rawFF, 1) = "~" Then
-            MsgBox MName & " 파일을 다른 누군가가 열고 있습니다.   " & vbNewLine & _
-                "확인 후 다시 진행해 주세요.", vbInformation, banner
-            Exit Sub
+        If Chr(66 + i) <> "E" Then 'E 드라이브에서는 오류 발생하여 회피
+            rawP = Chr(66 + i) & ":\00 공통기초자료\" '업데이트 대상 자료의 폴더 설정 ★★
+            '원본파일 변수정의
+            rawF = "*사원리스트.xls*" '원본파일 이름 설정 ★★ / rawF를 못찾으면 초기화되어 다시 설정
+            rawF = Dir(rawP & "*" & rawF) '원본파일 경로포함 이름
+            If Left(rawF, 1) = "~" Then
+                MsgBox MName & " 파일을 다른 누군가가 열고 있습니다.   " & vbNewLine & _
+                    "확인 후 다시 진행해 주세요.", vbInformation, banner
+                Exit Sub
+            End If
+            If rawF <> Empty Then GoTo n:
         End If
-        If rawFF <> Empty Then GoTo n:
     Next
     MsgBox MName & " 파일이 업데이트하려는 폴더에 없습니다." & vbNewLine & _
         "확인 후 다시 진행해 주세요.", vbInformation, banner
