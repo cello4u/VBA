@@ -1,0 +1,13 @@
+Sub Gugudan()
+    Dim i As Long
+    Dim j As Long
+    
+    ActiveSheet.Range("A1").CurrentRegion.Clear
+    
+    For i = 2 To 9
+        For j = 1 To 9
+            Cells(j, i - 1) = i & "*" & j & "=" & i * j
+        Next
+    Next
+            
+End Sub
