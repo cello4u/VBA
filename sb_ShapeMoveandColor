@@ -1,0 +1,12 @@
+Sub ShapeMoveandColor()
+    
+    Dim objS   As Object
+    Dim lngC    As Long
+    
+    For Each objS In ActiveSheet.Shapes
+        lngC = lngC + 1
+        objS.Left = Range("B1").Left
+        objS.Fill.ForeColor.SchemeColor = lngC
+    Next
+    
+End Sub
