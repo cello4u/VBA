@@ -1,0 +1,12 @@
+Sub AutoFilterReset()
+    Dim rng As Range
+    Set btnbutton = ActiveSheet.Buttons(Application.Caller)
+    strcaption = btnbutton.Caption
+        Application.ScreenUpdating = False
+        
+    If Range("A1:J1").AutoFilter Then '★range는 필터가 있는 열로 수정
+        Else
+        On Error Resume Next
+        ActiveSheet.ShowAllData
+    End If
+End Sub
