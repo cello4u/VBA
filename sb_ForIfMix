@@ -1,0 +1,51 @@
+Sub ForIfMix_V()
+'// 500 미만인 곳에 적색처리 후 저조라고 표시(세로형data)
+    Dim i   As Long
+    For i = 3 To 11
+        If Range("C" & i) < 500 Then
+            Range("C" & i).Font.Color = 255
+            Range("D" & i) = "저조"
+        End If
+    Next
+End Sub
+
+Sub ForIfMix_H()
+'// 500 미만인 곳에 적색처리 후 저조라고 표시(가로형data)
+    Dim i   As Long
+    For i = 2 To 11
+        If Cells(14, i) < 500 Then
+            Cells(14, i).Font.Color = 255
+            Cells(15, i).Value = "저조"
+        End If
+    Next
+End Sub
+
+
+Sub ForIfMix_Matrix()
+'// 500 미만인 곳에 적색처리(2차원data)
+    Dim i   As Long
+    For i = 2 To 10
+        For j = 2 To 9
+            If Cells(i, j) < 500 Then
+            Cells(i, j).Font.Color = 255
+            End If
+        Next
+    Next
+End Sub
+
+
+Sub ForIfMix_object()
+'// 각 도형에 이름에 맞는 색상으로 색넣기
+    Dim objS    As Object
+    
+    For Each objS In ActiveSheet.Shapes
+        If objS.Name = Range("E3") Then
+            objS.Fill.ForeColor.RGB = Range("F3").Interior.Color
+        ElseIf objS.Name = Range("E4") Then
+            objS.Fill.ForeColor.RGB = Range("F4").Interior.Color
+        ElseIf objS.Name = Range("E5") Then
+            objS.Fill.ForeColor.RGB = Range("F5").Interior.Color
+        End If
+    Next
+End Sub
+
