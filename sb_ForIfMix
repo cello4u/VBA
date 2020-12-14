@@ -1,3 +1,4 @@
+'//엑사남 VBA 기본강의 4강 요약
 Sub ForIfMix_V()
 '// 500 미만인 곳에 적색처리 후 저조라고 표시(세로형data)
     Dim i   As Long
