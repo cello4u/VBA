@@ -1,0 +1,31 @@
+Sub release_Filter1()
+    If ActiveSheet.AutoFilterMode Then
+        ActiveSheet.UsedRange.AutoFilter   '(영역을 지정하지 않고도) 현재시트내의 필터 해제함
+    End If
+End Sub
+
+ 
+
+또 다른 방법(필터를 해제할 데이터영역을 지정해줘야 함) :
+
+If ActiveSheet.FilterMode = True Then      '필터링 되어 있으면
+    ActiveSheet.ShowAllData                   '모든 데이터 보이도록 함
+    데이터영역(range).AutoFilter               '필터 해제
+End If
+
+ 
+
+또는
+
+With ActiveSheet
+
+    If .FilterMode = True Then
+
+        .ShowAllData
+
+        데이터영역.AutoFilter
+
+    End If
+
+End With
+[출처] 자동필터 (AutoFilter) 설정 해제 기본코드 (엑셀 VBA 매크로)|작성자 yjongm
