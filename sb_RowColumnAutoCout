@@ -1,0 +1,19 @@
+Sub RowColumnAutoCount()
+    Dim i   As Long
+    Dim lngR    As Long
+    Dim lngC    As Long
+            
+    '// 행 또는 열의 마지막을 자동인식 후 행, 열수를 반환
+    lngR = Range("B10000").End(xlUp).Row
+    lngC = Range("IV2").End(xlToLeft).Column
+    
+    '// 70미만 적색글씨 표시
+    For i = 2 To lngR
+        For j = 2 To lngC
+            If Cells(i, j) <= 70 Then
+                Cells(i, j).Font.ColorIndex = 3
+            End If
+        Next j
+    Next i
+
+End Sub
